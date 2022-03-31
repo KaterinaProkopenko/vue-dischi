@@ -1,5 +1,6 @@
 <template>
   <main>
+      <p class="text-light">{{selectedGenre}}</p>
       <div class="row justify-content-center m-0">
           <div class="col-8 d-flex justify-content-center flex-wrap py-5 gap">
                 <MainCard v-for="(element, index) in cards" :key="index" :cardObject="element"/>
@@ -17,6 +18,7 @@ export default {
     components: {
         MainCard
     },
+    props: ['selectedGenre'],
 
     data: function() {
         return {

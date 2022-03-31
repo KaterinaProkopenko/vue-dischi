@@ -1,13 +1,35 @@
 <template>
-  <header class="ps-2">
+  <header class="ps-2 d-flex justify-content-between">
     <img src="https://brandlogos.net/wp-content/uploads/2021/12/spotify-brandlogo.net_.png" alt="logo">
+
+    <div id="ms-select-input" class="input-group input-group-sm p-3">
+      <select class="form-select" id="input-select">
+        <option selected>Select genre</option>
+        <option @click="selected(), $emit('select', selectedString)" value="Rock">Rock</option>
+        <option @click="selected(), $emit('select', selectedString)" value="Pop">Pop</option>
+        <option @click="selected(), $emit('select', selectedString)" value="Jazz">Jazz</option>
+        <option @click="selected(), $emit('select', selectedString)" value="Metal">Metal</option>
+      </select>
+    </div>
 
   </header>
 </template>
 
 <script>
+
 export default {
   name: 'HeaderIndex',
+  data: function() {
+      return {
+        selectedString: '',
+      }
+  },
+
+  methods: {
+    selected() {
+      this.selectedString = document.querySelector('#input-select').value;
+    }
+  }
 }
 </script>
 
@@ -23,6 +45,11 @@ export default {
     img{
       width: 45px;
       margin: .5rem;
+    }
+
+    div#ms-select-input{
+      width: 300px;
+      height: 20px;
     }
   }
 

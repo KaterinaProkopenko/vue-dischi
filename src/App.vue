@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <Header/>
-    <Main/>
+    <Header @select="selectedGenre"/>
+    <Main :selectedGenre="selectedString"/>
   </div>
 </template>
 
@@ -16,6 +16,17 @@ export default {
   components: {
     Header,
     Main
+  },
+  data: function() {
+    return {
+      selectedString: '',
+    }
+  },
+  methods: {
+    selectedGenre(string){
+      this.selectedString = string;
+      console.log(this.selectedString);
+    }
   }
 
 }
