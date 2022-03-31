@@ -1,9 +1,8 @@
 <template>
   <main>
-      <p class="text-light">{{selectedGenre}}</p>
       <div class="row justify-content-center m-0">
           <div class="col-8 d-flex justify-content-center flex-wrap py-5 gap">
-                <MainCard v-for="(element, index) in cards" :key="index" :cardObject="element"/>
+                <MainCard v-for="(element, index) in cards" :key="index" :selectedGenre="selectedGenre" :cardObject="element"/>
           </div>
       </div>
   </main>
@@ -16,7 +15,7 @@ import MainCard from './MainCard.vue';
 export default {
     name: 'MainIndex',
     components: {
-        MainCard
+        MainCard,
     },
     props: ['selectedGenre'],
 

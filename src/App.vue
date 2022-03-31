@@ -25,7 +25,6 @@ export default {
   methods: {
     selectedGenre(string){
       this.selectedString = string;
-      console.log(this.selectedString);
     }
   }
 

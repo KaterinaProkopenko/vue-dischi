@@ -4,7 +4,6 @@
 
     <div id="ms-select-input" class="input-group input-group-sm p-3">
       <select class="form-select" id="input-select">
-        <option selected>Select genre</option>
         <option @click="selected(), $emit('select', selectedString)" value="Rock">Rock</option>
         <option @click="selected(), $emit('select', selectedString)" value="Pop">Pop</option>
         <option @click="selected(), $emit('select', selectedString)" value="Jazz">Jazz</option>
@@ -27,7 +26,7 @@ export default {
 
   methods: {
     selected() {
-      this.selectedString = document.querySelector('#input-select').value;
+      this.selectedString = document.querySelector('#input-select').value;   
     }
   }
 }
