@@ -2,7 +2,7 @@
   <main>
       <div class="row justify-content-center m-0">
           <div class="col-8 d-flex justify-content-center flex-wrap py-5 gap">
-                <MainCard v-for="(element, index) in cards" :key="index" :selectedGenre="selectedGenre" :cardObject="element"/>
+                <MainCard v-for="(element, index) in filteredCards" :key="index" :cardObject="element"/>
           </div>
       </div>
   </main>
@@ -21,24 +21,39 @@ export default {
 
     data: function() {
         return {
-            cards: null,
+            cards: [],
+            genresList: []
         }
     },
 
-    created: function(){
-        this.getApiList();
+    computed: {
+        filteredCards(){
+            if(this.selectedGenre === ''){
+                return this.cards;
+            }
+            return this.cards.filter(
+                (element) => element.genre === this.selectedGenre)
+        }
     },
 
-    methods: {
-        getApiList(){
-            axios.get('https://flynn.boolean.careers/exercises/api/array/music').then((result) => {
-                this.cards = result.data.response;
-                console.log(this.cards);
+    created(){
+        axios.get('https://flynn.boolean.careers/exercises/api/array/music').then((result) => {
+            this.cards = result.data.response;
+            console.log(this.cards);
+
+            this.cards.forEach((element) => {
+
+                if(!this.genresList.includes(element.genre)) {
+                    this.genresList.push(element.genre);
+                }
+            })
+
+            this.$emit('chosenGenres', this.genresList);
+
             })
             .catch((error) => {
                 console.error(error);
             })
-        }
     }
 }
 </script>

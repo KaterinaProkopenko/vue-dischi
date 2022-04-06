@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <Header @select="selectedGenre"/>
-    <Main :selectedGenre="selectedString"/>
+    <Header @select="updateSelectedGenre" :genres="genres"/>
+    <Main @chosenGenres="updateGenresList" :selectedGenre="selectedGenreString"/>
   </div>
 </template>
 
@@ -9,7 +9,6 @@
 
 import Header from './components/Header.vue'
 import Main from './components/Main.vue'
-
 
 export default {
   name: 'App',
@@ -19,16 +18,22 @@ export default {
   },
   data: function() {
     return {
-      selectedString: '',
+      selectedGenreString: '',
+      genres: []
     }
   },
   methods: {
-    selectedGenre(string){
-      this.selectedString = string;
+    updateGenresList(genres){
+      this.genres = genres;
+    },
+
+    updateSelectedGenre(selectedGenreString){
+      this.selectedGenreString = selectedGenreString;
     }
   }
-
 }
+
+
 
 </script>
 

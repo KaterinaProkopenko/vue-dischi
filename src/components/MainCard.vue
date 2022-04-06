@@ -1,22 +1,16 @@
 <template>
-  <div class="ms-card text-center" v-if="selectedGenre == cardObject.genre">
+  <div class="ms-card text-center">
       <img class="img-fluid p-3" :src="cardObject.poster" :alt="cardObject.title">
       <h5 class="fw-bold mb-2 px-2 text-uppercase">{{cardObject.title}}</h5>
       <p class="m-0 lh-sm">{{cardObject.author}}</p>
       <p class="m-0 lh-sm">{{cardObject.year}}</p>
   </div>
-  
 </template>
 
 <script>
 export default {
     name: 'MainCard',
-    props: ['cardObject', 'selectedGenre'],
-    data: function(){
-        return {
-        }
-    }
-
+    props: ['cardObject']
 }
 </script>
 

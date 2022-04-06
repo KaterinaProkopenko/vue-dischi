@@ -3,11 +3,8 @@
     <img src="https://brandlogos.net/wp-content/uploads/2021/12/spotify-brandlogo.net_.png" alt="logo">
 
     <div id="ms-select-input" class="input-group input-group-sm p-3">
-      <select class="form-select" id="input-select">
-        <option @click="selected(), $emit('select', selectedString)" value="Rock">Rock</option>
-        <option @click="selected(), $emit('select', selectedString)" value="Pop">Pop</option>
-        <option @click="selected(), $emit('select', selectedString)" value="Jazz">Jazz</option>
-        <option @click="selected(), $emit('select', selectedString)" value="Metal">Metal</option>
+      <select class="form-select" id="input-select" v-model="selectedString" @change="$emit('select', selectedString)">
+        <option v-for="(genre, index) in genres" :value="genre" :key="index">{{genre}}</option>
       </select>
     </div>
 
@@ -18,17 +15,12 @@
 
 export default {
   name: 'HeaderIndex',
+  props: ['genres'],
   data: function() {
       return {
         selectedString: '',
       }
   },
-
-  methods: {
-    selected() {
-      this.selectedString = document.querySelector('#input-select').value;   
-    }
-  }
 }
 </script>
 
